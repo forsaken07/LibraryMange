@@ -1,1 +1,0 @@
-ALTER TABLE `grades_entry` CHANGE `max_grades` `max_grades` INT(11) NOT NULL DEFAULT '500';

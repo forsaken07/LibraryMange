@@ -9,7 +9,7 @@
 
         <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
         <jdbcConnection driverClass="com.mysql.jdbc.Driver"
-                        connectionURL="jdbc:mysql://localhost:3306/spm_assignment?serverTimezone=GMT"
+                        connectionURL="jdbc:mysql://localhost:3306/library?serverTimezone=GMT"
                         userId="root"
                         password="root">
             <property name="nullCatalogMeansCurrent" value="true"/>
@@ -34,43 +34,9 @@
                              targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
-
-        <table tableName="global_parameters" domainObjectName="GlobalParameter"/>
-        <table tableName="user" domainObjectName="User">
-            <generatedKey column="uid" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="user_token" domainObjectName="UserSession">
-            <generatedKey column="session_id" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="grades_entry" domainObjectName="GradesEntry">
-            <generatedKey column="gid" sqlStatement="MySql" identity="true"/>
-            <columnOverride column="is_approved" javaType="java.lang.Boolean" jdbcType="BOOLEAN" />
-        </table>
-        <table tableName="grades_entry_proof" domainObjectName="GradesEntryProof"/>
-        <table tableName="application" domainObjectName="Application">
-            <generatedKey column="aid" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="teacher" domainObjectName="Teacher"></table>
-        <table tableName="ccf_event" domainObjectName="CCFEvent">
-            <generatedKey column="eid" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="student" domainObjectName="Student">
-        </table>
-        <table tableName="select_rank_entry" domainObjectName="SelectRankEntry">
-            <generatedKey column="reid" sqlStatement="MySql" identity="true"/>
-        </table>
-        <table tableName="detailed_grades_entry" domainObjectName="DetailedGradesEntry"
-               enableInsert="false" enableSelectByPrimaryKey="false" enableUpdateByPrimaryKey="false"
-               enableDeleteByPrimaryKey="false" enableDeleteByExample="false"
-               enableUpdateByExample="false"/>
-        <table tableName="detailed_select_rank" domainObjectName="DetailedSelectRankEntry"
-               enableInsert="false" enableSelectByPrimaryKey="false" enableUpdateByPrimaryKey="false"
-               enableDeleteByPrimaryKey="false" enableDeleteByExample="false"
-               enableUpdateByExample="false"/>
-        <table tableName="detailed_application" domainObjectName="DetailedApplication"
-               enableInsert="false" enableSelectByPrimaryKey="false" enableUpdateByPrimaryKey="false"
-               enableDeleteByPrimaryKey="false" enableDeleteByExample="false"
-               enableUpdateByExample="false"/>
-
+        <table tableName="book"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="borrow"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="login"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
+        <table tableName="reader"  enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false"></table>
     </context>
 </generatorConfiguration>

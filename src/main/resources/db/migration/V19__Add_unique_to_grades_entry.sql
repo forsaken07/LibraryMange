@@ -1,1 +1,0 @@
-ALTER TABLE `spm_assignment`.`grades_entry` DROP INDEX `UNIQUE`, ADD UNIQUE `UNIQUE` (`eid`, `student_id`, `id_no`) USING BTREE;

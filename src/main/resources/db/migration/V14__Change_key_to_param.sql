@@ -1,1 +1,0 @@
-alter table global_parameters change `key` param varchar(255) not null;

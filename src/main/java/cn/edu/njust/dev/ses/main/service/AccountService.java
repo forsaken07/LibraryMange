@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 public class AccountService {
     @Autowired
-    private UserMapper userMapper;
+    private BookMapper userMapper;
     @Autowired
     private UserSessionMapper userSessionMapper;
     @Autowired

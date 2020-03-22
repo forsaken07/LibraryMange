@@ -1,247 +1,142 @@
--- phpMyAdmin SQL Dump
--- version 4.8.5
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 8.0.16, for Win64 (x86_64)
 --
--- Host: localhost
--- Generation Time: 
--- サーバのバージョン： 8.0.15
--- PHP Version: 7.3.6
+-- Host: localhost    Database: library
+-- ------------------------------------------------------
+-- Server version	8.0.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+SET NAMES utf8 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Database: `spm_assignment`
+-- Table structure for table `book`
 --
 
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `book`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+SET character_set_client = utf8mb4 ;
+CREATE TABLE `book` (
+                        `bookID` int(11) NOT NULL,
+                        `bookName` varchar(20) DEFAULT NULL,
+                        `bookType` enum('文学','娱乐','教育','科技') DEFAULT NULL,
+                        `bookPrice` float unsigned DEFAULT '0',
+                        `publisher` varchar(20) DEFAULT NULL,
+                        PRIMARY KEY (`bookID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- テーブルの構造 `application`
+-- Dumping data for table `book`
 --
 
-CREATE TABLE `application` (
-  `aid` int(11) NOT NULL,
-  `uid` int(11) NOT NULL,
-  `app_time` date NOT NULL,
-  `app_status` enum('not confirmed','pending','approved','failed') NOT NULL DEFAULT 'pending',
-  `eid` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
+LOCK TABLES `book` WRITE;
+/*!40000 ALTER TABLE `book` DISABLE KEYS */;
+/*!40000 ALTER TABLE `book` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- テーブルの構造 `ccf_event`
+-- Table structure for table `borrow`
 --
 
-CREATE TABLE `ccf_event` (
-  `eid` int(11) NOT NULL,
-  `exam_no` int(11) NOT NULL,
-  `exam_time` date NOT NULL,
-  `select_exam_time` date NOT NULL,
-  `appli_deadline` date NOT NULL,
-  `can_apply` tinyint(4) NOT NULL DEFAULT '0',
-  `appli_starts_on` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `global_parameters`
---
-
-CREATE TABLE `global_parameters` (
-  `key` varchar(255) NOT NULL,
-  `value` varchar(511) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `borrow`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+SET character_set_client = utf8mb4 ;
+CREATE TABLE `borrow` (
+                          `recordID` int(11) NOT NULL,
+                          `readerID` int(11) DEFAULT NULL,
+                          `bookID` int(11) DEFAULT NULL,
+                          `borrowDate` date DEFAULT NULL,
+                          `returnDate` date DEFAULT NULL,
+                          PRIMARY KEY (`recordID`),
+                          KEY `readerID_idx` (`readerID`),
+                          KEY `bookID_idx` (`bookID`),
+                          CONSTRAINT `bookID` FOREIGN KEY (`bookID`) REFERENCES `book` (`bookID`),
+                          CONSTRAINT `readerID` FOREIGN KEY (`readerID`) REFERENCES `reader` (`readerID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- テーブルのデータのダンプ `global_parameters`
+-- Dumping data for table `borrow`
 --
 
-INSERT INTO `global_parameters` (`key`, `value`) VALUES
-('max_sponsored_participants', '150'),
-('midgrades_for_autoapprove', '300');
-
--- --------------------------------------------------------
-
---
--- テーブルの構造 `grades_entry`
---
-
-CREATE TABLE `grades_entry` (
-  `gid` int(11) NOT NULL,
-  `type` enum('select','official') NOT NULL,
-  `grades` int(11) NOT NULL,
-  `eid` int(11) NOT NULL,
-  `uid` int(11) DEFAULT NULL,
-  `max_grades` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
+LOCK TABLES `borrow` WRITE;
+/*!40000 ALTER TABLE `borrow` DISABLE KEYS */;
+/*!40000 ALTER TABLE `borrow` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- テーブルの構造 `student`
+-- Table structure for table `login`
 --
 
-CREATE TABLE `student` (
-  `uid` int(11) DEFAULT NULL,
-  `student_id` varchar(45) NOT NULL,
-  `gender` varchar(45) NOT NULL,
-  `id_no` varchar(45) NOT NULL,
-  `ethnic_group` varchar(45) DEFAULT NULL,
-  `admission_year` int(11) NOT NULL,
-  `institute` varchar(45) NOT NULL,
-  `profession` varchar(45) NOT NULL,
-  `class` varchar(45) NOT NULL,
-  `phone_no` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
+DROP TABLE IF EXISTS `login`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+SET character_set_client = utf8mb4 ;
+CREATE TABLE `login` (
+                         `userName` varchar(20) NOT NULL,
+                         `password` varchar(20) DEFAULT NULL,
+                         PRIMARY KEY (`userName`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- テーブルの構造 `teacher`
+-- Dumping data for table `login`
 --
 
-CREATE TABLE `teacher` (
-  `uid` int(11) NOT NULL,
-  `work_id` varchar(45) NOT NULL,
-  `name` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
+LOCK TABLES `login` WRITE;
+/*!40000 ALTER TABLE `login` DISABLE KEYS */;
+/*!40000 ALTER TABLE `login` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- テーブルの構造 `user`
+-- Table structure for table `reader`
 --
 
-CREATE TABLE `user` (
-  `uid` int(11) NOT NULL,
-  `account` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `type` enum('student','teacher','associate') NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+DROP TABLE IF EXISTS `reader`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+SET character_set_client = utf8mb4 ;
+CREATE TABLE `reader` (
+                          `readerID` int(10) NOT NULL AUTO_INCREMENT,
+                          `realName` varchar(20) DEFAULT NULL,
+                          PRIMARY KEY (`readerID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Indexes for dumped tables
+-- Dumping data for table `reader`
+--
+
+LOCK TABLES `reader` WRITE;
+/*!40000 ALTER TABLE `reader` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reader` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Dumping events for database 'library'
 --
 
 --
--- Indexes for table `application`
+-- Dumping routines for database 'library'
 --
-ALTER TABLE `application`
-  ADD PRIMARY KEY (`aid`),
-  ADD KEY `a_uid_idx` (`uid`),
-  ADD KEY `a_eid_idx` (`eid`);
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Indexes for table `ccf_event`
---
-ALTER TABLE `ccf_event`
-  ADD PRIMARY KEY (`eid`),
-  ADD UNIQUE KEY `ce_unique` (`exam_no`);
-
---
--- Indexes for table `global_parameters`
---
-ALTER TABLE `global_parameters`
-  ADD PRIMARY KEY (`key`);
-
---
--- Indexes for table `grades_entry`
---
-ALTER TABLE `grades_entry`
-  ADD PRIMARY KEY (`gid`),
-  ADD UNIQUE KEY `UNIQUE` (`eid`,`uid`,`type`),
-  ADD KEY `ge_uid_idx` (`uid`);
-
---
--- Indexes for table `student`
---
-ALTER TABLE `student`
-  ADD UNIQUE KEY `student_id_UNIQUE` (`student_id`),
-  ADD KEY `s_uid_idx` (`uid`);
-
---
--- Indexes for table `teacher`
---
-ALTER TABLE `teacher`
-  ADD PRIMARY KEY (`uid`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`uid`),
-  ADD UNIQUE KEY `account` (`account`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `application`
---
-ALTER TABLE `application`
-  MODIFY `aid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `ccf_event`
---
-ALTER TABLE `ccf_event`
-  MODIFY `eid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `grades_entry`
---
-ALTER TABLE `grades_entry`
-  MODIFY `gid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- ダンプしたテーブルの制約
---
-
---
--- テーブルの制約 `application`
---
-ALTER TABLE `application`
-  ADD CONSTRAINT `a_eid` FOREIGN KEY (`eid`) REFERENCES `ccf_event` (`eid`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `a_uid` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- テーブルの制約 `grades_entry`
---
-ALTER TABLE `grades_entry`
-  ADD CONSTRAINT `ge_eid` FOREIGN KEY (`eid`) REFERENCES `ccf_event` (`eid`),
-  ADD CONSTRAINT `ge_uid` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- テーブルの制約 `student`
---
-ALTER TABLE `student`
-  ADD CONSTRAINT `s_uid` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- テーブルの制約 `teacher`
---
-ALTER TABLE `teacher`
-  ADD CONSTRAINT `t_uid` FOREIGN KEY (`uid`) REFERENCES `user` (`uid`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2020-03-18 16:25:30

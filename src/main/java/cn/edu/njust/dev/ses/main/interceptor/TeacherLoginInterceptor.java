@@ -1,7 +1,5 @@
 package cn.edu.njust.dev.ses.main.interceptor;
 
-import cn.edu.njust.dev.ses.main.model.Teacher;
-import cn.edu.njust.dev.ses.main.model.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 

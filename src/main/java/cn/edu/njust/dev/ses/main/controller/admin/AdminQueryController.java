@@ -1,11 +1,7 @@
 package cn.edu.njust.dev.ses.main.controller.admin;
 
-import cn.edu.njust.dev.ses.main.dto.ApplicationDTO;
 import cn.edu.njust.dev.ses.main.dto.ResultDTO;
-import cn.edu.njust.dev.ses.main.mapper.*;
-import cn.edu.njust.dev.ses.main.model.*;
 import cn.edu.njust.dev.ses.main.service.AccountManagementService;
-import cn.edu.njust.dev.ses.main.service.FileService;
 import com.aliyun.oss.OSSException;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
@@ -25,9 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.sql.SQLIntegrityConstraintViolationException;
-import java.sql.SQLNonTransientException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

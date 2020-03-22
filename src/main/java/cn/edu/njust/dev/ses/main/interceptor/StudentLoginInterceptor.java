@@ -1,15 +1,10 @@
 package cn.edu.njust.dev.ses.main.interceptor;
 
-import cn.edu.njust.dev.ses.main.dto.ResultDTO;
-import cn.edu.njust.dev.ses.main.model.Student;
-import cn.edu.njust.dev.ses.main.model.Teacher;
-import cn.edu.njust.dev.ses.main.model.User;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 @Component
 public class StudentLoginInterceptor implements HandlerInterceptor {

@@ -1,8 +1,5 @@
 package cn.edu.njust.dev.ses.main.service;
 
-import cn.edu.njust.dev.ses.main.mapper.GlobalParameterMapper;
-import cn.edu.njust.dev.ses.main.model.GlobalParameter;
-import cn.edu.njust.dev.ses.main.model.GlobalParameterExample;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Scheduled;
