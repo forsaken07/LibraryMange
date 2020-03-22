@@ -1,0 +1,1 @@
+rename table login to user;

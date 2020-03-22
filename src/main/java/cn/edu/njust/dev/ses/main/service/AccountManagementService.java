@@ -34,15 +34,6 @@ final public class AccountManagementService {
         if(token != null){
             User targetUser = accountService.getUidByToken(token);
             requestSession.getSession().setAttribute("logged_in_as", targetUser);
-            if(targetUser.getType().equals("student")){//学生类型，将信息存入student_info
-                StudentExample studentExample = new StudentExample();
-                studentExample.createCriteria().andUidEqualTo(targetUser.getUid());
-                requestSession.getSession().setAttribute("student_info", studentMapper.selectByExample(studentExample).get(0));
-            }else if(targetUser.getType().equals("teacher")){
-                TeacherExample teacherExample = new TeacherExample();
-                teacherExample.createCriteria().andUidEqualTo(targetUser.getUid());
-                requestSession.getSession().setAttribute("teacher_info", teacherMapper.selectByExample(teacherExample).get(0));
-            }
         }
     }
 
@@ -85,8 +76,6 @@ final public class AccountManagementService {
         }
 
         requestSession.getSession().removeAttribute("logged_in_as");
-        requestSession.getSession().removeAttribute("teacher_info");
-        requestSession.getSession().removeAttribute("student_info");
     }
 
     public void updateAllSessionsForUser(Integer uid){
@@ -97,17 +86,7 @@ final public class AccountManagementService {
             User logged_in_as = (User) session.getAttribute("logged_in_as");
             if(logged_in_as != null&& logged_in_as.getUid().equals(user.getUid())){
                 session.setAttribute("logged_in_as", user);
-                if(logged_in_as.getType().equals("student")){
-                    StudentExample studentExample = new StudentExample();
-                    studentExample.createCriteria().andUidEqualTo(logged_in_as.getUid());
-                    session.setAttribute("student_info", studentMapper.selectByExample(studentExample).get(0));
-                }else if(logged_in_as.getType().equals("teacher")){
-                    TeacherExample teacherExample = new TeacherExample();
-                    teacherExample.createCriteria().andUidEqualTo(logged_in_as.getUid());
-                    session.setAttribute("teacher_info", teacherMapper.selectByExample(teacherExample).get(0));
-                }
             }
-
         }
     }
     public void logoutUserFromAllSessions(Integer uid){
