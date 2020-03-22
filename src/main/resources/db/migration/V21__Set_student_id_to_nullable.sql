@@ -1,1 +1,0 @@
-ALTER TABLE `grades_entry` CHANGE `student_id` `student_id` VARCHAR(45) NULL;
