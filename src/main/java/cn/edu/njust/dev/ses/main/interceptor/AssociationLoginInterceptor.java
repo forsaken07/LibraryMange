@@ -1,8 +1,5 @@
 package cn.edu.njust.dev.ses.main.interceptor;
 
-import cn.edu.njust.dev.ses.main.model.Student;
-import cn.edu.njust.dev.ses.main.model.User;
-import com.sun.nio.sctp.Association;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 

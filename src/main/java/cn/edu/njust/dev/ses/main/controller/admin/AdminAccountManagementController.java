@@ -1,11 +1,6 @@
 package cn.edu.njust.dev.ses.main.controller.admin;
 
 import cn.edu.njust.dev.ses.main.dto.ResultDTO;
-import cn.edu.njust.dev.ses.main.mapper.TeacherMapper;
-import cn.edu.njust.dev.ses.main.mapper.UserMapper;
-import cn.edu.njust.dev.ses.main.model.Teacher;
-import cn.edu.njust.dev.ses.main.model.User;
-import cn.edu.njust.dev.ses.main.model.UserExample;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Controller;

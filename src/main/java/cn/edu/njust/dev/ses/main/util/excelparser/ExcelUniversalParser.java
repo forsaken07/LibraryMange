@@ -1,7 +1,6 @@
 package cn.edu.njust.dev.ses.main.util.excelparser;
 
 
-import cn.edu.njust.dev.ses.main.dto.GenericDTO;
 import cn.edu.njust.dev.ses.main.exception.RequiredExcelFieldNotFoundException;
 import cn.edu.njust.dev.ses.main.exception.UnfitPropertyTypeException;
 import cn.edu.njust.dev.ses.main.exception.UnsupportedExcelFormatException;
