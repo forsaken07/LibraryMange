@@ -1,6 +1,7 @@
 package cn.edu.njust.dev.ses.main.service;
 
 import cn.edu.njust.dev.ses.main.mapper.ReaderMapper;
+import cn.edu.njust.dev.ses.main.model.Reader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -8,16 +9,16 @@ import org.springframework.stereotype.Service;
 public class ReaderService {
     @Autowired
     private ReaderMapper readerMapper;
-    public void add(){
-
+    public void add(Reader reader){
+        readerMapper.insert(reader);
     }
-    public void delete(){
-
+    public void delete(Reader reader){
+        readerMapper.deleteByPrimaryKey(reader.getReaderid());
     }
-    public void search(){
-
+    public void search(Reader reader){
+        readerMapper.selectByPrimaryKey(reader.getReaderid());
     }
-    public void modify(){
-
+    public void modify(Reader reader){
+        readerMapper.updateByPrimaryKeySelective(reader);
     }
 }

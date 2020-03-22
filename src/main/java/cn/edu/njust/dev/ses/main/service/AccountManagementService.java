@@ -1,6 +1,7 @@
 package cn.edu.njust.dev.ses.main.service;
 
 import cn.edu.njust.dev.ses.main.listener.SessionCollectionListener;
+import cn.edu.njust.dev.ses.main.mapper.UserMapper;
 import cn.edu.njust.dev.ses.main.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
