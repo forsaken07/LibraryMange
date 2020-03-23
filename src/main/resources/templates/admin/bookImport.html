@@ -30,7 +30,7 @@
         <button type="button" class="layui-btn" id="test1">
             <i class="layui-icon">&#xe67c;</i>上传信息
         </button>
-        <a href="/download/studentImport.xlsx" download="书本信息导入模板.xlsx" class="layui-btn">下载模版</a>
+        <a href="/download/bookImport.xls" download="书本信息导入模板.xlsx" class="layui-btn">下载模版</a>
     </div>
     <div style="margin-top: 20px">
         <form id="dataUpload">
@@ -78,44 +78,20 @@
                             cols: [
                                 [ //表头
                                     {
-                                        field: 'name',
-                                        title: '姓名',
+                                        field: 'bookName',
+                                        title: '书本名称',
                                         sort: true
                                     }, {
-                                    field: 'studentId',
-                                    title: '学号',
+                                    field: 'bookType',
+                                    title: '类型',
                                     sort: true
                                 }, {
-                                    field: 'gender',
-                                    title: '性别',
+                                    field: 'bookPrice',
+                                    title: '价格',
                                     sort: true
                                 }, {
-                                    field: 'idNo',
-                                    title: '身份证号',
-                                    sort: true
-                                }, {
-                                    field: 'ethnicGroup',
-                                    title: '民族',
-                                    sort: true
-                                }, {
-                                    field: 'admissionYear',
-                                    title: '入学年份',
-                                    sort: true
-                                }, {
-                                    field: 'institute',
-                                    title: '学院',
-                                    sort: true
-                                }, {
-                                    field: 'profession',
-                                    title: '专业',
-                                    sort: true
-                                }, {
-                                    field: 'classNo',
-                                    title: '班级',
-                                    sort: true
-                                }, {
-                                    field: 'phoneNo',
-                                    title: '联系方式',
+                                    field: 'publisher',
+                                    title: '出版社',
                                     sort: true
                                 }
                                 ]

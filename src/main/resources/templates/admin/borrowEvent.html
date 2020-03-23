@@ -36,45 +36,24 @@
 <div id="form1" style="padding: 20px; display: none;">
     <form class="layui-form" id="addform" lay-filter="create">
         <div class="layui-form-item">
-            <label class="layui-form-label">考试批次</label>
-            <div class="layui-input-inline">
-                <input type="text" name="number" id="examNo" required lay-verify="required" class="layui-input ">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">正式考试时间</label>
-            <div class="layui-input-inline">
-                <input type="text" name="examTime" id="examTime" required lay-verify="required" class="layui-input laydate">
+            <label class="layui-form-label">借/还</label>
+            <div class="layui-input-block">
+                <input type="radio" name="botu" value="借" title="借">
+                <input type="radio" name="botu" value="还" title="还">
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label class="layui-form-label">选拔考试时间</label>
+            <label class="layui-form-label">书本ID</label>
             <div class="layui-input-inline">
-                <input type="text" name="selectExamTime" id="selectExamTime" required lay-verify="required"
-                       class="layui-input laydate">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">选拔考试申请开始时间</label>
-            <div class="layui-input-inline">
-                <input type="text" name="appliStartsOn" id="appliStartsOn" required lay-verify="required"
-                       class="layui-input laydate">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">选拔考试申请截止时间</label>
-            <div class="layui-input-inline">
-                <input type="text" name="appliDeadline" id="appliDeadline" required lay-verify="required"
-                       class="layui-input laydate">
+                <input type="text" name="bookId" id="bookId" required lay-verify="required" class="layui-input ">
             </div>
         </div>
 
-
         <div class="layui-form-item">
-            <label class="layui-form-label">是否开放申请</label>
+            <label class="layui-form-label">读者ID</label>
             <div class="layui-input-inline">
-                <input type="checkbox" name="canApply" id="canApply"lay-skin="switch" lay-text="ON|OFF" checked>
+                <input type="text" name="readerId" id="readerId" required lay-verify="required" class="layui-input ">
             </div>
         </div>
 
@@ -96,22 +75,22 @@
         <div class="layui-form-item">
             <label class="layui-form-label">借/还</label>
             <div class="layui-input-block">
-                <input type="radio" name="sex" value="借" title="借">
-                <input type="radio" name="sex" value="还" title="还">
+                <input type="radio" name="botu" value="借" title="借">
+                <input type="radio" name="botu" value="还" title="还">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">书本ID</label>
             <div class="layui-input-inline">
-                <input type="text" name="number" id="examNo2" required lay-verify="required" class="layui-input ">
+                <input type="text" name="bookId" id="bookId2" required lay-verify="required" class="layui-input ">
             </div>
         </div>
 
         <div class="layui-form-item">
             <label class="layui-form-label">读者ID</label>
             <div class="layui-input-inline">
-                <input type="text" name="number" id="examNo2" required lay-verify="required" class="layui-input ">
+                <input type="text" name="readerId" id="readerId2" required lay-verify="required" class="layui-input ">
             </div>
         </div>
 
