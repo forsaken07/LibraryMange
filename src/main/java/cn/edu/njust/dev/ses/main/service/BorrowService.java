@@ -3,13 +3,24 @@ package cn.edu.njust.dev.ses.main.service;
 import cn.edu.njust.dev.ses.main.mapper.BorrowMapper;
 import cn.edu.njust.dev.ses.main.model.Book;
 import cn.edu.njust.dev.ses.main.model.Borrow;
+import cn.edu.njust.dev.ses.main.model.BorrowExample;
 import cn.edu.njust.dev.ses.main.model.Reader;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Comparator;
 import java.util.Date;
+import java.util.List;
+
+/**
+ * 与借阅相关的服务的内容
+ * 1.增加借阅记录
+ * 2.修改借阅记录（还书）
+ * 3.查询借阅记录（通过某本书，某个人）
+ *
+ */
 
 @Service
 public class BorrowService {
@@ -24,14 +35,30 @@ public class BorrowService {
         borrow.setBorrowdate(formatter.parse(formatter.format(new Date())));
         borrowMapper.insert(borrow);
     }
+
     public void delete(Reader reader,Book book){
         Borrow borrow = new Borrow();
         borrowMapper.deleteByPrimaryKey(borrow.getRecordid());
     }
-    public void search(){
+
+    public void search(Reader reader,Book book){
+        BorrowExample borrowExample = new BorrowExample();
+        borrowExample.createCriteria().andReaderidEqualTo(reader.getReaderid());
+        borrowExample.createCriteria().andBookidEqualTo(book.getBookid());
+        List<Borrow> borrows = borrowMapper.selectByExample(borrowExample);
 
     }
-    public void modify(Reader reader,Book book){
 
+    public void modify(Reader reader,Book book) throws ParseException {
+        BorrowExample borrowExample = new BorrowExample();
+        borrowExample.createCriteria().andReaderidEqualTo(reader.getReaderid());
+        borrowExample.createCriteria().andBookidEqualTo(book.getBookid());
+        List<Borrow> borrows=borrowMapper.selectByExample(borrowExample);
+        borrows.sort(Comparator.comparingInt(Borrow::getBookid));
+        int len = borrows.size();
+        Borrow borrow = new Borrow();
+        borrow.setRecordid(borrows.get(len-1).getRecordid());
+        borrow.setReturndate(formatter.parse(formatter.format(new Date())));
+        borrowMapper.updateByPrimaryKeySelective(borrow);
     }
 }
