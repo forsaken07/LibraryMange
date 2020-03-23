@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 public class LoginService {
     @Autowired
     private LoginMapper loginMapper;
-    public void add(){
+    public void insert(){
 
     }
     public void delete(){
@@ -16,7 +16,7 @@ public class LoginService {
     public void search(){
 
     }
-    public void modify(){
+    public void update(){
 
     }
 }

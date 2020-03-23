@@ -12,7 +12,7 @@ import java.util.List;
 public class BookService {
     @Autowired
     private BookMapper bookMapper;
-    public void add(Book book){
+    public void insert(Book book){
         bookMapper.insert(book);
     }
     public void delete(Book book){
@@ -26,7 +26,7 @@ public class BookService {
         List<Book> books = bookMapper.selectByExample(bookExample);
     }
 
-    public void modify(Book book){
+    public void update(Book book){
         BookExample bookExample = new BookExample();
         bookExample.createCriteria();
         bookMapper.updateByPrimaryKeySelective(book);
