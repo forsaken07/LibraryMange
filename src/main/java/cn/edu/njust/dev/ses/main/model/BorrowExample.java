@@ -521,6 +521,8 @@ public class BorrowExample {
             addCriterionForJDBCDate("returnDate not between", value1, value2, "returndate");
             return (Criteria) this;
         }
+
+        public abstract void andBooknameEqualTo(String bookname);
     }
 
     /**

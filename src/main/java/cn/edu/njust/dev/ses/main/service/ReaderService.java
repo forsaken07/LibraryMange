@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class ReaderService {
     @Autowired
     private ReaderMapper readerMapper;
-    public void add(Reader reader){
+    public void insert(Reader reader){
         readerMapper.insert(reader);
     }
     public void delete(Reader reader){
@@ -18,7 +18,7 @@ public class ReaderService {
     public void search(Reader reader){
         readerMapper.selectByPrimaryKey(reader.getReaderid());
     }
-    public void modify(Reader reader){
+    public void update(Reader reader){
         readerMapper.updateByPrimaryKeySelective(reader);
     }
 }

@@ -28,7 +28,7 @@ public class BorrowService {
     private BorrowMapper borrowMapper;
 
     private static final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-    public void add(Reader reader, Book book) throws ParseException {
+    public void insert(Reader reader, Book book) throws ParseException {
         Borrow borrow = new Borrow();
         borrow.setBookid(book.getBookid());
         borrow.setReaderid(reader.getReaderid());
@@ -37,19 +37,24 @@ public class BorrowService {
     }
 
     public void delete(Reader reader,Book book){
-        Borrow borrow = new Borrow();
-        borrowMapper.deleteByPrimaryKey(borrow.getRecordid());
+        BorrowExample borrowExample = new BorrowExample();
+        borrowExample.createCriteria().andBookidEqualTo(book.getBookid());
+        borrowExample.createCriteria().andReaderidEqualTo(reader.getReaderid());
+        List<Borrow> borrows=borrowMapper.selectByExample(borrowExample);
+        borrows.sort(Comparator.comparingInt(Borrow::getBookid));
+        borrowMapper.deleteByPrimaryKey(borrows.get(borrows.size()-1).getRecordid());
     }
 
-    public void search(Reader reader,Book book){
+    public List<Borrow> search(Reader reader,Book book){
         BorrowExample borrowExample = new BorrowExample();
         borrowExample.createCriteria().andReaderidEqualTo(reader.getReaderid());
         borrowExample.createCriteria().andBookidEqualTo(book.getBookid());
+        borrowExample.createCriteria().andBooknameEqualTo(book.getBookname());
         List<Borrow> borrows = borrowMapper.selectByExample(borrowExample);
-
+        return borrows;
     }
 
-    public void modify(Reader reader,Book book) throws ParseException {
+    public void update(Reader reader,Book book) throws ParseException {
         BorrowExample borrowExample = new BorrowExample();
         borrowExample.createCriteria().andReaderidEqualTo(reader.getReaderid());
         borrowExample.createCriteria().andBookidEqualTo(book.getBookid());
